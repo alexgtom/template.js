@@ -1,0 +1,8 @@
+template.js has a very simple testing structure. All folders in this directory
+contains test cases except for js_files and templates. js_files and templates 
+contain files that test cases use. js_ast uses files from js_files for test 
+cases and likewise template_ast uses files from templates for test cases. The
+codegen directory uses files from both js_files and templates.
+
+Run make to run all test cases. These test cases are NOT extensive and probably 
+won't be since I'm using this for my own personal purposes. 
