@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 """
-Runs template_parse.py with the --ast option and compares the outputed ast 
+Runs template.py with the --ast option and compares the outputed ast 
 with a the correct ast file in this directory
 """
 
@@ -21,7 +21,7 @@ def main():
     
     proc = subprocess.Popen(
             [
-                '../../template_parse.py', 
+                '../../template.py', 
                 '--templateast', 
                 '../templates/' + args.testname + '.html.te'
             ], 

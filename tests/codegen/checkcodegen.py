@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
 """
-Runs template_parse.py and compares the outputed code
-with the correct code file (*.out.js) in this directory
+Runs template.py and compares the outputed code
+with the correct code file (*.codegen.js) in this directory
 """
 
 import argparse
@@ -14,14 +14,14 @@ def main():
     parser.add_argument("testname", help="the name of the test")
     args = parser.parse_args()
 
-    correct_codegen_file = open(args.testname + ".out.js")
+    correct_codegen_file = open(args.testname + ".codegen.js")
     expected_output = correct_codegen_file.read()
     correct_codegen_str = " ".join(expected_output.strip().split())
     correct_codegen_file.close()
     
     proc = subprocess.Popen(
             [
-                '../../template_parse.py', 
+                '../../template.py', 
                 '../templates/' + args.testname + '.html.te'
             ], 
             stdout=subprocess.PIPE)

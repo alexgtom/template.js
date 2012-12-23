@@ -9,9 +9,9 @@ error=()
 
 count=0
 
-for f in *.out.js
+for f in *.codegen.js
 do
-	basename=`basename $f .out.js`
+	basename=`basename $f .codegen.js`
 	command="./checkcodegen.py $basename"
 	output=`$command`
 	rc=$?

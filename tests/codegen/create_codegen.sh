@@ -6,5 +6,5 @@ for f in ../js_files/*.js
 do
 	echo $f
 	basename=`basename $f .js`
-	../../template_parse.py $f > $basename.codegen.js
+	../../template.py $f > $basename.codegen.js
 done
