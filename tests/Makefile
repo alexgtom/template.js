@@ -1,4 +1,4 @@
-.PHONY: all ast
+.PHONY: all templateast codegen jsast
 
 all: templateast codegen jsast
 

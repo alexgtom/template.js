@@ -22,7 +22,7 @@ def main():
     proc = subprocess.Popen(
             [
                 '../../template.py', 
-                '../templates/' + args.testname + '.html.te'
+                '../js_files/' + args.testname + '.js'
             ], 
             stdout=subprocess.PIPE)
     got_output = proc.stdout.read()

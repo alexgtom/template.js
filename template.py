@@ -103,8 +103,10 @@ CSS = "CSS"
 
 RESERVED_WORDS = [FOR, IF, ELSE, IN, END]
 
+mappings = {}
+
 """ AST """
-class AST:
+class AST(object):
     count = 0
     def __init__(self, *args):
         self.child = args
@@ -145,6 +147,13 @@ class CssStmt_AST(AST):
         pass
 
 class Map_AST(AST):
+    def __init__(self, *args):
+        global mappings
+        super(Map_AST, self).__init__(*args)
+
+        for c in self.child:
+            mappings[c.child[0]] = c.child[1]
+
     def out(self, indent=0):
         return out_indent(indent, "(map \n" + \
                 "\n".join([c.out(indent+4) for c in self.child]) + ")")
@@ -160,7 +169,6 @@ class JsBlock_AST(AST):
 
     def codegen(self, indent=0):
         return out_indent(indent, self.child[0])
-
 
 """ Template AST """
 class Module_AST(AST):
@@ -463,10 +471,7 @@ def template_stmt(token_list):
     
     while(len(token_list) > 1):
         token_list.get_expected(COMMA) 
-        if token_list[0] == LBRACE:
-            template_args.append(map_stmt(token_list))
-        else:
-            template_args.append(id_parse(token_list))
+        template_args.append(js_expr(token_list))
     
     token_list.get_expected(RPAREN)
 
@@ -582,7 +587,14 @@ def main():
     elif args.jsast:
         print js_ast(fp_str).out()
     else:
-        print js_ast(fp_str).codegen()
+        ast = js_ast(fp_str)
+        # print code gen
+        codegen = ast.codegen()
+        
+        for key in mappings:
+            codegen = codegen.replace(key.codegen(), mappings[key].codegen())
+
+        print codegen
 
 if __name__ == "__main__":
     main()

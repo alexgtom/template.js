@@ -1,1 +1,1 @@
-TEMPLATE("test", a, b, c, {d : e}, {f : g, h : i});
+TEMPLATE("../templates/map", a, b, {c : 1});
