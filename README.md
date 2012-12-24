@@ -1,10 +1,10 @@
 Overview
 ========
 
-Template.js is a app that bring templating to Javascript apps. Supposed we have the following snippit in `simple.js`:
+Template.js is a app that bring templating to Javascript apps. Suppose we have the following snippit in `simple.js`:
 
     ...
-    str = TEMPLATE("simple.html.te", {a : 1})
+    str = TEMPLATE("simple", {a : 1})
     ...
     
 and `simple.html.te` has:
